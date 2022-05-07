@@ -3,12 +3,20 @@ name: V2freeCheckin
 on:
   watch:
     types: [ started ]
-  release:
-    types: [ published ]
-  push:
-    branches: [ master ]
   schedule:
     - cron: '7 16 * * *'
+    
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
 
 jobs:
   check-in:
@@ -28,7 +36,6 @@ jobs:
         
     - name: Checkin
       run: |
-        echo `date +"%Y-%m-%d %H:%M:%S"` Checkin > time.log
         user='${{ secrets.USER }}'
         pwd='${{ secrets.PWD }}'
         
@@ -66,7 +73,7 @@ jobs:
         git config --global user.email founder.yu@foxmail.com
         git config --global user.name founder-yu
         git add .
-        git commit -m "Update time.log" -a
+        git commit -m "Update flow.log" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
