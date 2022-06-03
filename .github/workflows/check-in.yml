@@ -1,6 +1,7 @@
 name: V2freeCheckin
 
 on:
+  workflow_dispatch:
   watch:
     types: [ started ]
   schedule:
